@@ -1,0 +1,91 @@
+✅ Folder Structure
+php
+Copy
+Edit
+dod_reporting_app/
+│
+├── dod/
+│   ├── __init__.py      # Initializes the blueprint
+│   ├── routes.py        # Flask routes for DoD
+│   ├── logic.py         # Business logic
+│
+├── templates/
+│   ├── dod/
+│   │   ├── dod.html                # Main UI
+│   │   └── forms/
+│   │       └── asset_identification.html  # AJAX-loaded form
+│
+├── static/
+│   └── ...               # Your JS/CSS files
+│
+├── main.py               # Flask app runner
+└── ...
+🔷 Step-by-Step Setup
+1. dod/__init__.py
+python
+Copy
+Edit
+from flask import Blueprint
+
+dod_blueprint = Blueprint('dod', __name__, template_folder='templates', static_folder='static')
+
+from dod import routes  # Import routes to register them
+2. dod/routes.py
+python
+Copy
+Edit
+from flask import render_template, request
+from dod import dod_blueprint
+from dod.logic import get_form_template
+
+@dod_blueprint.route('/dod', methods=['GET'])
+def show_dod_page():
+    return render_template('dod/dod.html')
+
+@dod_blueprint.route('/ajax-load-form', methods=['POST'])
+def ajax_load_form():
+    report_id = request.form.get('id')
+    template = get_form_template(report_id)
+    if template:
+        return render_template(template)
+    else:
+        return "<div>No form available for this report.</div>"
+
+@dod_blueprint.route('/run-report', methods=['POST'])
+def run_report():
+    # Sample placeholder
+    return f"Report for {request.form.get('searchItem')}"
+3. dod/logic.py
+python
+Copy
+Edit
+def get_form_template(report_id):
+    templates = {
+        "2008": "dod/forms/asset_identification.html",
+        # Add other mappings here
+    }
+    return templates.get(report_id)
+4. Register Blueprint in main.py or app/__init__.py
+python
+Copy
+Edit
+from dod import dod_blueprint
+app.register_blueprint(dod_blueprint, url_prefix='/dod')
+5. Update Your dod.html Template
+Ensure AJAX calls use:
+
+js
+Copy
+Edit
+url: "{{ url_for('dod.ajax_load_form') }}"
+🧪 Ready to Go!
+Now you can:
+
+Visit: http://127.0.0.1:5000/dod/dod
+
+Select a report
+
+AJAX will call /dod/ajax-load-form
+
+Flask will respond with the matching HTML fragment
+
