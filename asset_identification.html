@@ -1,0 +1,26 @@
+<div class="page_title blue_title">Asset Identification</div>
+
+<form method="POST" action="{{ url_for('dod.run_report') }}">
+    <fieldset>
+        <legend>Search Criteria:</legend>
+
+        <label for="searchItem">Search Item:</label>
+        <input type="text" id="searchItem" name="searchItem" required minlength="3" />
+
+        <select name="searchType">
+            <option value="starts">starts with</option>
+            <option value="contains">contains</option>
+        </select>
+
+        <br /><br />
+        <small>
+            Input value must be at least 3 characters in length.<br/>
+            Search includes Application Acronym, Application Name, CI Name Instance,<br/>
+            DB Name, Net Service Name, Physical Server, Virtual Server.
+        </small>
+    </fieldset>
+
+    <br/>
+    <input type="submit" value="Execute Report" />
+    <input type="reset" value="Reset" />
+</form>
