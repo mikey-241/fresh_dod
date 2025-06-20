@@ -1,0 +1,333 @@
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">--->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>CMS - DoD Reporting</title>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="icon" type="image/ico" href="favicon.ico" />
+
+
+    <!-- css and js files -->
+
+     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.treeview.css') }}" type="text/css" />
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/jquery-ui-start-1.8.16.custom.css') }}" type="text/css" />
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/jquery-ui-start-1.8.1.custom.css') }}" type="text/css" />
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/jquery-countdown-1.5.4.css') }}" type="text/css" />
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/jquery-ui-additional.css') }}" type="text/css" />
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.multiselect.css') }}" type="text/css" />
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.dataTables.css') }}" type="text/css"/>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.dataTables_themeroller.css') }}" type="text/css" />
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/showLoading.css') }}" media="screen" type="text/css"/>
+	
+	<!--[if IE 7]>
+    	<link rel="stylesheet" type="text/css" href="assets/css/ie7.css" />
+    <![endif]-->
+	<!--[if lte IE 6]>
+    	<link rel="stylesheet" type="text/css" href="assets/css/ie6.css" />
+    <![endif]-->
+
+	<script type="text/javascript" src="{{ url_for('static', filename='js/min/jquery-3.3.1.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/min/jquery-ui-1.12.1.custom.min.js') }}"></script>
+	<script language="javascript" src="{{ url_for('static', filename='js/tablesorter.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/min/jquery-tablesorter-pager-2.0.js') }}"></script>
+	<script language="javascript" src="{{ url_for('static', filename='js/tablesorter_filter.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/min/jquery-corner-1.99.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.treeview.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-ui-buttons-1.0.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/min/vtip-min-2.0.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/min/jquery-jeditable-1.7.1.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/min/jquery-chainedSelects.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/min/jquery-ui-timepicker-addon-1.6.3.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/min/jquery.multiselect.min.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/min/jquery.multiselect-3.0.min.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/min/jquery.dataTables.min.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.alerts.min.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.showLoading.js') }}"></script>
+	<script type="text/javascript" charset="utf-8" src="{{ url_for('static', filename='js/ColReorder.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/basic.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/bulk.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/vtip-bulk-2.0.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/softci.js') }}"></script>
+	
+
+</head>
+<body>
+    <div id="statusBox" onclick="$(this).stop().fadeOut();">&nbsp;</div>
+    <noscript> 
+        <div style="border:2px solid black; background-color:#FFFF00; position:absolute; display:block; width:400px; height:150px; left:5px; top:10px; padding:10px; text-align:center;">
+            <br />
+            <h2><strong>Sorry, you must have JavaScript enabled to access this site.</strong></h2>
+            <br />
+            <strong>Contact the Corporate Helpdesk if you<br />need assistance enabling JavaScript.</strong>
+            <br /><br />
+        </div>
+    </noscript> 
+	
+    <div class="header_bar">
+        <div class="header_left">
+            <div class="site_name_w_slogan">CMS Portal</div> 
+            <div class="site_slogan">Configuration Management System</div>
+            <div class="welcome_message">Welcome, Shivam Shresth!
+			
+			</div>
+            <div id="xyzstatus" style="position:absolute; top:2px; left:35%; display:none; cursor:pointer;"></div>
+        </div>
+	</div>
+	<table width="100%" style="margin-top:5px;">
+        <tr>
+            <td valign="top" style="width:180px;">
+            	
+		
+                
+<div id="createDoD"></div>
+
+
+  
+
+<ul style="margin-top:1px;padding:0px " class="menu">
+	<li><a href="{{ url_for ('page1') }}" ><span>Home</span></a></li>
+	<li id="custExpand"><a><span>External Links</span></a></li>
+    	<div id="custlinks" style="display:none!important">
+    		
+                      <li><a href="http://cmdb.it.att.com"  target='_blank'>
+                       <span>CMDB</span></a>
+                    </li>
+                    
+                      <li><a href="http://cma.it.att.com/index.cfm?page=41987"
+                        target='_blank'>
+                       <span>CMA</span></a>
+                    </li>
+                    
+                      <li><a href="https://tspace.web.att.com/communities/service/html/communityoverview?communityUuid=76487320-b5dc-4565-8bcd-bbc6e0ec1c6a"
+                        target='_blank'>
+                       <span>New CMA Link</span></a>
+                    </li>
+                    
+        </div>
+</ul>
+
+<div class="menuHeader" >CMDB Tools</div>
+<ul class="menu menu3">
+   <li><a href="{{ url_for('catalog') }}"><span>Catalog</span></a></li>
+   <li><a href="{{ url_for('dashboard') }}"><span>Dashboard</span></a></li>
+</ul>
+
+<div class="menuHeader">SoftCI TSA (SCM)</div>
+<ul class="menu menu2">
+   	<li><a href="?do=src.main" ><span>CI Search</span></a></li>
+   	<li><a href="?do=src.create" ><span>CI Create</span></a></li>
+   	<li><a href="?do=src.history" ><span>Audit Entries</span></a></li>
+   	<li><a id="blk_link" href="javascript:showInnerTabs();" ><span>Bulk Load/Edit</span></a></li>
+    <div id="blk_div" style="display:none;">
+    
+    <li class="sub_menu"><a href="?do=blk.main&toggle=on" ><span style="line-height:29px; padding-left: 18px;">Bulk Load</span></a></li>
+    <li class="sub_menu"><a href="?do=blk.ed&toggle=on" ><span style="line-height:29px; padding-left: 18px;">Bulk Edit</span></a></li>
+    </div>
+    <li><a href="?do=adm.main" ><span>Admin</span></a></li>
+</ul>
+
+<div class="menuHeader">Reporting Tools</div>
+<ul class="menu menu3">
+  <li><a href="?do=cr.main" ><span>Canned Reports</span></a></li>
+  <li><a href="{{ url_for('adhoc.uPickit') }}"><span>Ad Hoc Reports</span></a></li>
+</ul>
+
+<div class="menuHeader">Global</div>
+<ul class="menu">  
+  
+  <li><a href="?do=u.up" class="vtip" title="Allows you to change your Personal Preferences such as Tool Tipcs, etc."><span>User Preferences</span></a></li>
+  <li><a href="?do=sec.logout"><span>Logout</span></a></li>
+</ul>
+
+
+
+<script type="text/javascript">
+$(function(){
+	var vToggle = 0;
+	//$("#custlinks").hide();
+	$("#custExpand").click(function(event) {	
+        if( vToggle == 0)
+		{
+			$("#custlinks").show();
+			vToggle = 1;
+		}
+		else
+		{
+			$("#custlinks").hide();
+			vToggle = 0;
+		}
+		return false;
+		//event.preventDefault();
+    });
+		$(".menu li").corner("5px"); // Round the corners of the nav menu items. uses jQuery corner plugin	
+		
+	});
+	
+	function showInnerTabs()
+	{
+		dsp = $("#blk_div").css("display");
+		
+		if(dsp == 'block')
+			$("#blk_div").css("display","none");
+		else
+			$("#blk_div").css("display","block");
+	}
+</script>
+		
+		    </td>
+            <td valign="top" style="width:100%; padding-left:5px;">
+			
+<div style="display:block;">
+	<ul class="adminMenu">
+    	
+        <li>
+            <a href="{{ url_for('adhoc.uPickit') }}" class=""><span>uPickit</span></a>
+        </li>
+        
+		
+        <li>
+            <a href="{{ url_for('adhoc.DoD') }}" class="active"><span>DoD Reporting</span></a>
+        </li>
+        
+        <li>
+            <a href="{{ url_for('adhoc.myrepo') }}" class=""><span>My Reports</span></a>
+        </li>
+        
+    </ul>
+</div>
+
+<br />
+
+<div class="page_title blue_title" id="pageTitle">DoD Reporting</div>
+
+
+<br />
+<br />
+<div id="searching">
+    <img src="static/images/working.gif" />&nbsp;<span style="font-weight: bold; font-size:24px;" id="SearchText">Processing ... </span>
+</div>
+<div id="maint">
+    <img src="static/images/working.gif" />&nbsp;<span style="font-weight: bold; font-size:24px;" id="SearchText">Performing Maintenance... </span>
+</div>
+
+<a href="/index.cfm?do=ah.dspDoDReporting">DoD Reporting</a> >><br /><br />
+
+    <strong>Please choose which report you would like to run.</strong>
+
+
+<form id ="frm1" name="cmdbFormList" action="index.cfm?do=ah.getDoDResults" method="post">
+      <table border=0>
+        
+        
+
+        	
+          <tr><td style="font-weight:bold;">DoD Reports:&nbsp;</td><td>
+            <select name="A0" id="A0" onChange="$('#SearchText').html('Processing...');$('#searching').dialog('open');loadSearchForm($(this).val());" style="width:300px;">
+            <option value="0"></option>
+        	
+            		<option value="2008" >Asset Identification</option>
+            
+            		<option value="2011" >Backup Status Report</option>
+            
+            		<option value="2002" >Counts by TD, Product, Callout Group & DBA</option>
+            
+            		<option value="2005" >Custom uPickit Report</option>
+            
+            		<option value="2004" >DBA Support Assignments</option>
+            
+            		<option value="2001" >DBMS Application Report</option>
+            
+            		<option value="2009" >DBMS Relationship Types</option>
+            
+            		<option value="2012" >My DoD Reports</option>
+            
+            		<option value="2003" >Operational DBAs - Teams and Members</option>
+            
+            		<option value="2010" >Staged Reports</option>
+            
+            </select>
+          </td></tr>
+          <input type="hidden" name="SAVED_SEARCH_ID" value="">
+         
+          	<input type="hidden" name="Old_SAVED_Report_ID" id="Old_SAVED_Report_ID" value="">
+          
+  	</table><br />
+</form>
+
+
+<div id="searchForm"></div>
+<script type="text/javascript">
+		function loadSearchForm(id) {
+			
+			searchNameV = $('#Old_SAVED_Report_ID').val();
+			//alert(searchNameV);
+			if (id != searchNameV)
+			{
+					$('#Old_SAVED_Report_ID').val('');
+					$('#searchfiltered').css('display','none'); /*.css(display,'none');*/
+					
+			}
+			/* Against request 1169384 - building new code for Staged Reports (id = 2010) */
+			if (id == 2010)
+			{
+				window.location.href = "index.cfm?do=ah.dspStagedRpts";
+			}
+			else if(id == 2012)
+			{
+				window.location.href = "index.cfm?do=ah.dspMyDodReports";
+			}
+			else
+			{
+				//Ajax call to populate Members
+			$.ajax({
+				cache: false,
+				//dataType: "json",
+				type: 'post',
+				url: 'index.cfm?do=ah.ajaxLoadForm',
+				data: 'id=' + id,
+				success: function(msg) {$('#searchForm').html(msg);$("#searching").dialog('close');},
+				error: function(msg){alert('There was an error');$("#searching").dialog('close');}
+			});
+		}
+	}
+		
+</script></td>
+        </tr>
+    </table>    
+<div id="jalert" style="display:none;"></div>
+<div id="jconfirm" style="display:none;"></div>
+<div id="jprompt" style="display:none;"></div>
+        
+    <table width="100%" border="0" cellspacing="0" cellpadding="2" style="margin-top:50px; margin-bottom:100px;">			
+        <tr>
+            <td class="footer"><a href="#" style="color:#FFFFFF; font-size:130%; margin-left:10px;">tSite</a></td>
+            <td class="footer" align="right" colspan="2">
+                <img class="pointer" src="static/images/techbyott_orange.png" alt="technology by ott" onclick="javascript: window.location='https://itotools.it.att.com/';" />
+            </td>
+        </tr>
+        <tr>
+            <td align="center" colspan="3"><strong>AT&amp;T Proprietary (Internal Use Only)</strong><br />&nbsp;&nbsp;&nbsp;<span style="font-family:calibri; font-size:12px;">Not for use or disclosure outside the AT&amp;T companies except under written agreement</span></td>
+        </tr>
+    </table>
+    <script type="text/javascript">	
+		$(document).ready(function() {
+			// Fade in and out
+			
+			
+				
+			$('.error_message') .slideDown('slow');
+			$('.warning_message') .slideDown('slow') .animate({opacity: 1.0}, 20000) .slideUp('slow');// .fadeOut(2000);
+			$('.message') .slideDown('slow') .animate({opacity: 1.0}, 10000) .slideUp('slow');
+			//Round the corners of the page titles and message boxes
+			$(".page_title").corner("5px");  
+			$(".error_message").corner("5px"); 
+			$(".warning_message").corner("5px"); 
+			$(".message").corner("5px");			
+		});
+    </script>
+</body>
+</html>
