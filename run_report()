@@ -1,0 +1,32 @@
+from flask import request, render_template, current_app
+from dod import dod_blueprint
+from sqlalchemy import text
+
+@dod_blueprint.route('/run-report', methods=['POST'])
+def run_report():
+    search_item = request.form.get('searchItem')
+    search_type = request.form.get('searchType')
+
+    # Basic validation
+    if not search_item or len(search_item) < 3:
+        return "<div class='error_message'>Please enter at least 3 characters for the search item.</div>"
+
+    # SQL where clause logic
+    operator = "LIKE"
+    value = f"{search_item}%" if search_type == "starts" else f"%{search_item}%"
+
+    sql = text("""
+        SELECT CI_NAME, DB_NAME, SERVER_NAME
+        FROM ASSET_IDENTIFICATION
+        WHERE CI_NAME LIKE :search_value OR DB_NAME LIKE :search_value
+    """)
+
+    try:
+        engine = current_app.config['ENGINE']
+        with engine.connect() as conn:
+            result = conn.execute(sql, {"search_value": value})
+            rows = [dict(row) for row in result]
+    except Exception as e:
+        return f"<div class='error_message'>Database Error: {e}</div>"
+
+    return render_template("dod/report_result.html", results=rows, search_item=search_item, search_type=search_type)
